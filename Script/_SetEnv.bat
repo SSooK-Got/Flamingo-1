@@ -1,6 +1,6 @@
 @echo off
 
-set PROJECT_NAME=Beluga
+set PROJECT_NAME=Flamingo
 set ENGINE_VERSION=5.1
 
 set PROJECT_DIR=%~dp0
