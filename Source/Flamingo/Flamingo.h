@@ -5,7 +5,9 @@
 #include "CoreMinimal.h"
 
 DECLARE_LOG_CATEGORY_EXTERN(LogFL, Display, All);
+DECLARE_LOG_CATEGORY_EXTERN(LogFLAI, Display, All);
 
 namespace FLConst {
 	extern const ETraceTypeQuery TraceTypeQuery_Visibility;
 }
+
