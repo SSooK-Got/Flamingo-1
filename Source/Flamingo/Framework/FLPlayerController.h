@@ -22,6 +22,7 @@ public:
 private:
 	void OnPrimaryAction_Pressed();
 	void OnPrimaryAction_Released();
+	void OnSpawnOrb_Released();
 
 private:
 	bool bUpdateMovement = false;

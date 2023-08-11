@@ -13,5 +13,8 @@ UCLASS()
 class FLAMINGO_API AFLGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
-	
+
+public:
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	TSubclassOf<AActor> OrbClass;
 };
