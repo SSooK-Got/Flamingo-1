@@ -10,7 +10,14 @@ public class Flamingo : ModuleRules
 
 		PublicIncludePaths.AddRange(new string[] { "Flamingo" });
 
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "FunctionalTesting" });
+		PublicDependencyModuleNames.AddRange(new string[] { 
+			"Core", 
+			"CoreUObject", 
+			"Engine", 
+			"InputCore", 
+			"FunctionalTesting",
+			"AIModule" 
+		});
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 

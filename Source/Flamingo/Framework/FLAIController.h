@@ -8,4 +8,12 @@ UCLASS()
 class FLAMINGO_API AFLAIController : public AAIController
 {
 	GENERATED_BODY()
+
+public:
+	AFLAIController();
+	virtual void BeginPlay() override;
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+
+protected:
+	bool FindOrb(AActor*& OutActor);
 };
