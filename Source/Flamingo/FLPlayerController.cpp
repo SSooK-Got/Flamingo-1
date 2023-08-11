@@ -11,6 +11,27 @@ AFLPlayerController::AFLPlayerController()
 	bShowMouseCursor = true;
 }
 
+void AFLPlayerController::SetupInputComponent()
+{
+	Super::SetupInputComponent();
+
+	static const FName NAME_PrimaryAction(TEXT("PrimaryAction"));
+
+	// Press
+	{
+		FInputActionBinding AB(NAME_PrimaryAction, IE_Pressed);
+		AB.ActionDelegate.GetDelegateForManualSet().BindUObject(this, &ThisClass::OnPrimaryAction_Pressed);
+		InputComponent->AddActionBinding(AB);
+	}
+	
+	// Release
+	{
+		FInputActionBinding AB(NAME_PrimaryAction, IE_Released);
+		AB.ActionDelegate.GetDelegateForManualSet().BindUObject(this, &ThisClass::OnPrimaryAction_Released);
+		InputComponent->AddActionBinding(AB);
+	}
+}
+
 void AFLPlayerController::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
@@ -18,7 +39,7 @@ void AFLPlayerController::Tick(float DeltaSeconds)
 	APawn* ControlledPawn = GetPawn();
 	if (ControlledPawn)
 	{
-		//if (bUpdateMovement)
+		if (bUpdateMovement)
 		{
 			FHitResult HitResult;
 			if (GetHitResultUnderCursorByChannel(FLConst::TraceTypeQuery_Visibility, true, HitResult))
@@ -30,4 +51,14 @@ void AFLPlayerController::Tick(float DeltaSeconds)
 			}
 		}
 	}
+}
+
+void AFLPlayerController::OnPrimaryAction_Pressed()
+{
+	bUpdateMovement= true;
+}
+
+void AFLPlayerController::OnPrimaryAction_Released()
+{
+	bUpdateMovement = false;
 }

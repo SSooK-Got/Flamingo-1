@@ -16,7 +16,12 @@ class FLAMINGO_API AFLPlayerController : public APlayerController
 	
 public:
 	AFLPlayerController();
+	virtual void SetupInputComponent() override;
 	virtual void Tick(float DeltaSeconds) override;
+
+private:
+	void OnPrimaryAction_Pressed();
+	void OnPrimaryAction_Released();
 
 private:
 	bool bUpdateMovement = false;
