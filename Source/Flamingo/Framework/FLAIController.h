@@ -18,7 +18,9 @@ public:
 protected:
 	bool FindOrb(AActor*& OutActor);
 
-	void Move();
+	void MyMove();
+	
+	virtual void OnMoveCompleted(FAIRequestID RequestID, const FPathFollowingResult& Result) override;
 
 private:
 	FTimerHandle TimerHandle_Move;

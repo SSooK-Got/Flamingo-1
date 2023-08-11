@@ -9,7 +9,7 @@ void AFLAIController::BeginPlay()
 {
 	Super::BeginPlay();
 
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle_Move, this, &ThisClass::Move, 3.0f, true);
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle_Move, this, &ThisClass::MyMove, 3.0f, true);
 }
 
 void AFLAIController::EndPlay(const EEndPlayReason::Type EndPlayReason)
@@ -19,13 +19,25 @@ void AFLAIController::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	GetWorld()->GetTimerManager().ClearTimer(TimerHandle_Move);
 }
 
-void AFLAIController::Move()
+void AFLAIController::MyMove()
 {
 	AActor* TargetActor = nullptr;
 	if (FindOrb(TargetActor))
 	{
-		UE_LOG(LogFLAI, Display, TEXT("Yeah!!!!! Find Orb!"));
+		FAIMoveRequest MoveReq;
+		MoveReq.SetUsePathfinding(true);
+		MoveReq.SetAcceptanceRadius(5.0f);
+		MoveReq.SetReachTestIncludesAgentRadius(false);
+		MoveReq.SetGoalActor(TargetActor);
+		MoveTo(MoveReq);
 	}
+}
+
+void AFLAIController::OnMoveCompleted(FAIRequestID RequestID, const FPathFollowingResult& Result)
+{
+	Super::OnMoveCompleted(RequestID, Result);
+
+	//MyMove();
 }
 
 bool AFLAIController::FindOrb(AActor*& OutActor)
