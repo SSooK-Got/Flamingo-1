@@ -7,7 +7,9 @@ public class Flamingo : ModuleRules
 	public Flamingo(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
-	
+
+		PublicIncludePaths.AddRange(new string[] { "Flamingo" });
+
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "FunctionalTesting" });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
