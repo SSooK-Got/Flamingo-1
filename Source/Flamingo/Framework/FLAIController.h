@@ -17,4 +17,9 @@ public:
 
 protected:
 	bool FindOrb(AActor*& OutActor);
+
+	void Move();
+
+private:
+	FTimerHandle TimerHandle_Move;
 };

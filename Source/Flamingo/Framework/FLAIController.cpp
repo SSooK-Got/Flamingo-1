@@ -8,11 +8,24 @@ AFLAIController::AFLAIController()
 void AFLAIController::BeginPlay()
 {
 	Super::BeginPlay();
+
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle_Move, this, &ThisClass::Move, 3.0f, true);
 }
 
 void AFLAIController::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
 	Super::EndPlay(EndPlayReason);
+
+	GetWorld()->GetTimerManager().ClearTimer(TimerHandle_Move);
+}
+
+void AFLAIController::Move()
+{
+	AActor* TargetActor = nullptr;
+	if (FindOrb(TargetActor))
+	{
+		UE_LOG(LogFLAI, Display, TEXT("Yeah!!!!! Find Orb!"));
+	}
 }
 
 bool AFLAIController::FindOrb(AActor*& OutActor)
@@ -20,7 +33,7 @@ bool AFLAIController::FindOrb(AActor*& OutActor)
 	static const FName NAME_Orb(TEXT("Orb"));
 
 	TArray<AActor*> Actors;
-	
+
 	for (FActorIterator It(GetWorld()); It; ++It)
 	{
 		AActor* Actor = *It;
