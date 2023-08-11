@@ -37,6 +37,8 @@ bool AFLAIController::FindOrb(AActor*& OutActor)
 		return true;
 	}
 
+	UE_LOG(LogFLAI, Display, TEXT("Cannot Find Orb!"));
+
 	OutActor = nullptr;
 	return false;
 }

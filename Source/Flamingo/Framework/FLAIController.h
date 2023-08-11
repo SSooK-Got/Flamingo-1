@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Flamingo.h"
 #include "AIController.h"
 #include "FLAIController.generated.h"
 
